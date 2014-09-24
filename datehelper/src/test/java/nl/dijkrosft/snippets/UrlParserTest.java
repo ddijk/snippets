@@ -51,6 +51,12 @@ public class UrlParserTest {
 
     }
 
+    @Test
+    public void testOriginalSpaceReplaceByUnderscore() throws URISyntaxException {
+        new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena_II&amp;amp;dryRun=false");
+
+    }
+
     /**
      * Non parseable ULRs
      */
@@ -69,6 +75,12 @@ public class UrlParserTest {
     @Test
     public void testOriginalWithoutSpace() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:HyenaII&amp;amp;dryRun=false");
+
+    }
+
+    @Test
+    public void testOriginalWithEncodedSpace() throws URISyntaxException {
+        new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena%20II&amp;amp;dryRun=false");
 
     }
 
