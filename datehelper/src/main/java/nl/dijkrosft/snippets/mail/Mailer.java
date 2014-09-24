@@ -12,19 +12,19 @@ public class Mailer {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("mail.smtp.host", "gdexch6.ortec.intranet");
+        props.put("mail.smtp.host", "abc");
         // props.put("mail.smtp.port", "465");
         Session session = Session.getInstance(props, null);
 
         try {
             MimeMessage msg = new MimeMessage(session);
-            msg.setFrom("bngtreasury@ortec.nl");
+            msg.setFrom("**from**");
             msg.setRecipients(Message.RecipientType.TO,
-                    "dickdijk@xs4all.nl");
+                    "**email-adres**");
             msg.setSubject("JavaMail hello world example");
             msg.setSentDate(new Date());
             msg.setText("Hello, world!\n");
-            Transport.send(msg, "dickdijk", "aragon95");
+            Transport.send(msg, "username", "wachtw");
             System.out.println("msg sent!");
         } catch (MessagingException mex) {
             System.out.println("send failed, exception: " + mex);
