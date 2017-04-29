@@ -3,24 +3,26 @@ package nl.dijkrosft.snippets.zoo;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by dickdijk on 29/04/2017.
- */
 public class Ouwehand {
 
     public static void main(String[] args) {
 
 
-        List<Animal> animalList = new ArrayList<>();
+        List<Dog> animalList = new ArrayList<>();
 
         animalList.add(new Dog("zoogdier","Shiva" ));
-        animalList.add(new Konijn("zoogdier","Rommel" ));
+//        animalList.add(new Konijn("zoogdier","Rommel" ));
 
+        addAnimal(animalList);
         printAnimals(animalList);
     }
 
-    private static void printAnimals(List<Animal> animalList) {
-        animalList.add(new Konijn("zoogdier", "floppie"));
+    private static void addAnimal(List<? super Dog> animalList) {
+        animalList.add(new Dog("zoogdier", "fikkie"));
+    }
+
+    private static void printAnimals(List<? extends Animal> animalList) {
+      //  animalList.add(new Konijn("zoogdier", "floppie"));
         for ( Animal animal : animalList) {
             animal.print();
         }
