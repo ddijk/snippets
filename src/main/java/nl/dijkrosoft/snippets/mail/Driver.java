@@ -1,6 +1,6 @@
-package nl.dijkrosft.snippets.mail;
+package nl.dijkrosoft.snippets.mail;
 
-import nl.dijkrosft.snippets.Person;
+import nl.dijkrosoft.snippets.Person;
 
 /**
  * Created by dickdijk on 19/04/2017.

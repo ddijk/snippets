@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.mail;
+package nl.dijkrosoft.snippets.mail;
 
 import java.util.Date;
 import java.util.Properties;

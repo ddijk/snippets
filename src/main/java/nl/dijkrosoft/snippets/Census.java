@@ -1,9 +1,9 @@
-package nl.dijkrosft.snippets;
-
-import nl.dijkrosft.snippets.mail.Driver;
+package nl.dijkrosoft.snippets;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import nl.dijkrosoft.snippets.mail.Driver;
 
 /**
  * Created by dickdijk on 19/04/2017.

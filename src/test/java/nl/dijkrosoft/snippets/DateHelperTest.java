@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package nl.dijkrosft.snippets;
+package nl.dijkrosoft.snippets;
 
 import java.util.Calendar;
-import java.util.Date;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
