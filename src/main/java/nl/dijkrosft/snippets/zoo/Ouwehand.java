@@ -8,17 +8,22 @@ public class Ouwehand {
     public static void main(String[] args) {
 
 
-        List<Dog> animalList = new ArrayList<>();
+        List<Animal> animalList = new ArrayList<>();
 
         animalList.add(new Dog("zoogdier","Shiva" ));
 //        animalList.add(new Konijn("zoogdier","Rommel" ));
 
-        addAnimal(animalList);
+        addDog(animalList);
+        addKonijn(animalList);
         printAnimals(animalList);
     }
 
-    private static void addAnimal(List<? super Dog> animalList) {
+    private static void addDog(List<? super Dog> animalList) {
         animalList.add(new Dog("zoogdier", "fikkie"));
+    }
+
+    private static void addKonijn(List<? super Konijn> animalList) {
+        animalList.add(new Konijn("zoogdier", "Rommel"));
     }
 
     private static void printAnimals(List<? extends Animal> animalList) {
