@@ -47,7 +47,7 @@ public class ReadDbThread implements Runnable {
             if (n == -1) {
                 dbReadingDone = true;
                 System.out.println("dbReadingDone. " + new Date());
-                continue;
+                break;
             }
         }
 //        System.out.println("ReadDbThread done." + new Date());

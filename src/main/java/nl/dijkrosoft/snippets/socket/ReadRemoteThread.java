@@ -48,6 +48,7 @@ public class ReadRemoteThread implements Runnable {
             if (n == -1) {
                 remoteReadingDone = true;
                 System.out.println("remoteReadingDone, " + new Date());
+                break;
             }
         }
 //        System.out.println("ReadRemoteThread done." + new Date());
