@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 
 public class MyServerSocket {
 
@@ -30,7 +31,9 @@ public class MyServerSocket {
             System.out.println("Waiting for connections...");
             Socket socket = ss.accept();
 
-            System.out.println("Socket got connection");
+            socket.setSoTimeout(200);
+
+            System.out.println("Socket got connection. " + new Date());
 
             byte[] buf = new byte[1024 * 1024];
 
@@ -38,23 +41,39 @@ public class MyServerSocket {
             OutputStream remoteOutputStream = socket.getOutputStream();
 
             Socket dbSocket = new Socket("localhost", 5432);
+            dbSocket.setSoTimeout(200);
 
             InputStream dbInputStream = dbSocket.getInputStream();
             OutputStream dbOutputStream = dbSocket.getOutputStream();
 
-            int n;
+            int n = 0;
             boolean done = false;
             while (!done) {
 
 
+                System.out.println("Not done yet. " + new Date());
                 boolean remoteReadingDone = false;
-                while ( !remoteReadingDone) {
-                    n = remoteInputStream.read(buf);
+                while (!remoteReadingDone /* && remoteInputStream.available()>0*/) {
+                    try {
+
+                        n = remoteInputStream.read(buf);
+                        System.out.println("Read from remote " + n + ". " + new Date());
+
+                        if (n > 0) {
+                            System.out.println("About to write n=" + n);
+                            dbOutputStream.write(buf, 0, n);
+                            System.out.println("write done");
+
+                        }
+                    } catch (java.net.SocketTimeoutException ex) {
+                        System.out.println("Socket read timeout");
+                        remoteReadingDone = true;
+                    }
                     if (n == -1) {
                         remoteReadingDone = true;
+                        System.out.println("remoteReadingDone, " + new Date());
                         continue;
                     }
-                    dbOutputStream.write(buf, 0, n);
                 }
 //                if (n <= 1) {
 //                    System.out.println("Looks like we're done");
@@ -64,13 +83,26 @@ public class MyServerSocket {
 //                System.out.println("Buf length is " + buf.length + ", n is " + n);
 
                 boolean dbReadingDone = false;
-                while (!dbReadingDone) {
-                    n = dbInputStream.read(buf);
+                while (!dbReadingDone /* && dbInputStream.available()> 0 */) {
+                    System.out.println("Read from db");
+                    try {
+
+                        n = dbInputStream.read(buf);
+                        System.out.println("Read from db " + n + ". " + new Date());
+                        if (n > 0) {
+
+                            remoteOutputStream.write(buf, 0, n);
+                        }
+                    } catch (java.net.SocketTimeoutException ex) {
+                        System.out.println("db read timeout");
+                        dbReadingDone = true;
+                    }
+
                     if (n == -1) {
                         dbReadingDone = true;
+                        System.out.println("dbReadingDone. " + new Date());
                         continue;
                     }
-                    remoteOutputStream.write(buf, 0, n);
                 }
             }
             System.out.println("Done");
