@@ -10,6 +10,8 @@ import java.util.Date;
 public class MyServerSocket {
 
 
+    public static final int SO_TIMEOUT = 0;
+
     /**
      * param1 : listen port
      * param2 : port to forward to
@@ -32,7 +34,7 @@ public class MyServerSocket {
             System.out.println("Waiting for connections...");
             Socket socket = ss.accept();
 
-            socket.setSoTimeout(200);
+            socket.setSoTimeout(SO_TIMEOUT);
 
             System.out.println("Socket got connection. " + new Date());
 
@@ -41,7 +43,7 @@ public class MyServerSocket {
             OutputStream remoteOutputStream = socket.getOutputStream();
 
             Socket dbSocket = new Socket("localhost", 5432);
-            dbSocket.setSoTimeout(200);
+            dbSocket.setSoTimeout(SO_TIMEOUT);
 
             InputStream dbInputStream = dbSocket.getInputStream();
             OutputStream dbOutputStream = dbSocket.getOutputStream();
