@@ -1,13 +1,14 @@
 package nl.dijkrosoft.snippets.fp;
 
 import java.util.function.Supplier;
+
 public abstract class TailCall<T> {
 
     abstract T eval();
 
     abstract TailCall<T> resume();
 
-    abstract  boolean isSuspended();
+    abstract boolean isSuspended();
 }
 
 class Return<T> extends TailCall<T> {
@@ -36,7 +37,7 @@ class Return<T> extends TailCall<T> {
 
 class Suspend<T> extends TailCall<T> {
 
-    private final Supplier<TailCall<T>> supplier;
+    private Supplier<TailCall<T>> supplier;
 
     public Suspend(Supplier<TailCall<T>> supplier) {
         this.supplier = supplier;
@@ -44,7 +45,11 @@ class Suspend<T> extends TailCall<T> {
 
     @Override
     T eval() {
-        throw new IllegalStateException("Kan niet");
+        TailCall<T> res = supplier.get();
+        while (res.isSuspended()) {
+            res = res.resume();
+        }
+        return res.eval();
     }
 
     @Override

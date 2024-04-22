@@ -9,9 +9,6 @@ public class Fibonacci {
 
         TailCall<Tuple<BigInteger>> tupleTailCall = _fibo(x, new Tuple<>(BigInteger.ZERO, BigInteger.ONE));
 
-        while ( tupleTailCall.isSuspended()) {
-            tupleTailCall = tupleTailCall.resume();
-        }
 
         return tupleTailCall.eval()._1;
 
