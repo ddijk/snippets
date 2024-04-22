@@ -4,9 +4,11 @@
  */
 package nl.dijkrosoft.snippets;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Calendar;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -17,22 +19,24 @@ public class DateHelperTest {
   public DateHelperTest() {
   }
 
-  @Test
-  public void testIsMeerderJarig() {
+    @Test
+    void isMeerderJarig() {
 
     Calendar dob = Calendar.getInstance();
     dob.set(1973, 6, 8);  // 8 juli 1973
-    assertTrue("Dick is niet meerderjarig",DateHelper.isMeerderJarig(dob.getTime()));
+    assertTrue(DateHelper.isMeerderJarig(dob.getTime()),"Dick is niet meerderjarig");
     
     dob.set(2004,7,13);
 
-    assertTrue("Jens is wel meerderjarig",DateHelper.isMeerderJarig(dob.getTime()));
+    assertTrue(DateHelper.isMeerderJarig(dob.getTime()),"Jens is wel meerderjarig");
 
   }
 
-  @Test(expected=NullPointerException.class)
-  public void testNullDob() {
-    DateHelper.isMeerderJarig(null);
+    @Test
+    void nullDob() {
+      assertThrows(NullPointerException.class, () -> {
+          DateHelper.isMeerderJarig(null);
+      });
   }
 
 }

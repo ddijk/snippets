@@ -1,14 +1,12 @@
 package nl.dijkrosoft.snippets.regex;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CorsHelperTest {
 
-    @Parameterized.Parameters
     public static Object[][] data() {
         return new Object[][]{
                 new Object[]{"http://localhost:3000", "http://localhost:3000"},
@@ -23,15 +21,18 @@ public class CorsHelperTest {
     String input;
     String expectedResult;
 
-    public CorsHelperTest(String input, String expectedResult) {
+    public void initCorsHelperTest(String input, String expectedResult) {
         this.input = input;
         this.expectedResult = expectedResult;
     }
 
-    @Test
-    public void testCors() {
+    @MethodSource("data")
+    @ParameterizedTest
+    public void cors(String input, String expectedResult) {
 
-        Assert.assertEquals(expectedResult, CorsHelper.extractHostAndPort(input));
+        initCorsHelperTest(input, expectedResult);
+
+        assertEquals(expectedResult, CorsHelper.extractHostAndPort(input));
 
     }
 }

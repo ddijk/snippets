@@ -1,19 +1,19 @@
 package nl.dijkrosoft.snippets;
 
 import nl.dijkrosoft.snippets.BaeldungSynchronizedMethods;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BaeldungSynchronizedMethodsTest {
+class BaeldungSynchronizedMethodsTest {
 
     @Test
-    public void calculate() throws InterruptedException {
+    void calculate() throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(3);
         BaeldungSynchronizedMethods summation = new BaeldungSynchronizedMethods();
 

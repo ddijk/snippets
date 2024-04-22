@@ -1,16 +1,16 @@
 package nl.time;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Properties;
 
-public class TimeUTCTest {
+class TimeUTCTest {
 
     @Test
-    public void test() {
+    void test() {
         Date d = new Date();
 
         final long time = d.getTime();
@@ -28,7 +28,7 @@ public class TimeUTCTest {
     }
 
     @Test
-    public void epochDiff() {
+    void epochDiff() {
         long fromSite = 1549129481L;
 
         // now: corresponds to a different Unix timestamp than UTC if your not in the UTC timezone
@@ -39,7 +39,7 @@ public class TimeUTCTest {
      * This is the one!
      */
     @Test
-    public void epochDiffGetUTCTime() {
+    void epochDiffGetUTCTime() {
         long fromSite = 1549129481L;
 
         final long epochSecond = LocalDateTime.now(ZoneOffset.UTC).toEpochSecond(ZoneOffset.UTC);
@@ -49,7 +49,7 @@ public class TimeUTCTest {
     }
 
     @Test
-    public void epochDiffGetDate() {
+    void epochDiffGetDate() {
         long fromSite = 1549129481L;
 
         long d = new Date().getTime()/1000;
@@ -57,7 +57,7 @@ public class TimeUTCTest {
     }
 
     @Test
-    public void printSystemProperties() {
+    void printSystemProperties() {
 
         final Properties properties = System.getProperties();
 

@@ -1,19 +1,19 @@
 package nl.dijkrosoft.snippets;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by dickdijk on 19/04/2017.
  */
-public class SetTest {
+class SetTest {
 
     @Test
-    public void testAdding() {
+    void adding() {
 
         Set<String> s1 = new HashSet<>();
         s1.add("noot");

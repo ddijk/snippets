@@ -5,54 +5,57 @@
  */
 package nl.dijkrosoft.snippets;
 
+import org.junit.jupiter.api.Test;
+
 import java.net.URI;
 import java.net.URISyntaxException;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
  * @author DickD
  */
-public class UrlParserTest {
+class UrlParserTest {
 
     @Test
-    public void testNormal() throws URISyntaxException {
+    void normal() throws URISyntaxException {
         new URI("http://www.nu.nl");
 
     }
 
     @Test
-    public void testParameterWithColon() throws URISyntaxException {
+    void parameterWithColon() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena");
 
     }
 
     @Test
-    public void testParameterMultiplelHtmlEntities() throws URISyntaxException {
+    void parameterMultiplelHtmlEntities() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=d&amp;amp;dryRun=false");
 
     }
 
     @Test
-    public void testOrignalWithoutColonAndHttpEncSpace() throws URISyntaxException {
+    void orignalWithoutColonAndHttpEncSpace() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportalHyena%20II&amp;amp;dryRun=false");
 
     }
 
     @Test
-    public void testParameterHtmlEntity() throws URISyntaxException {
+    void parameterHtmlEntity() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=amp;");
 
     }
 
     @Test
-    public void testParameterWithSemicolon() throws URISyntaxException {
+    void parameterWithSemicolon() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=;");
 
     }
 
     @Test
-    public void testOriginalSpaceReplaceByUnderscore() throws URISyntaxException {
+    void originalSpaceReplaceByUnderscore() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena_II&amp;amp;dryRun=false");
 
     }
@@ -60,26 +63,32 @@ public class UrlParserTest {
     /**
      * Non parseable ULRs
      */
-    @Test(expected = URISyntaxException.class)
-    public void testOriginalCrashingUrl() throws URISyntaxException {
-        new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena II&amp;amp;dryRun=false");
+    @Test
+    void originalCrashingUrl() throws URISyntaxException {
+        assertThrows(URISyntaxException.class, () -> {
+            new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena II&amp;amp;dryRun=false");
 
-    }
-
-    @Test(expected = URISyntaxException.class)
-    public void testParameterWithSpace() throws URISyntaxException {
-        new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportalHyena II");
+        });
 
     }
 
     @Test
-    public void testOriginalWithoutSpace() throws URISyntaxException {
+    void parameterWithSpace() throws URISyntaxException {
+        assertThrows(URISyntaxException.class, () -> {
+            new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportalHyena II");
+
+        });
+
+    }
+
+    @Test
+    void originalWithoutSpace() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:HyenaII&amp;amp;dryRun=false");
 
     }
 
     @Test
-    public void testOriginalWithEncodedSpace() throws URISyntaxException {
+    void originalWithEncodedSpace() throws URISyntaxException {
         new URI("http://RDSON1:9000/batch_bootstrap/properties?project=webportal:Hyena%20II&amp;amp;dryRun=false");
 
     }

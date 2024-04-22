@@ -1,18 +1,18 @@
 package nl.dijkrosoft.snippets.collections;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.Assert.assertThat;
 
-public class UtilTest {
+class UtilTest {
 
 
     @Test
-    public void testDisjunction() {
+    void disjunction() {
 
 
         List<String> listA = List.of("aap", "noot", "mies", "vuur" );
@@ -22,7 +22,7 @@ public class UtilTest {
     }
 
     @Test
-    public void testIntersection() {
+    void intersection() {
 
 
         List<String> listA = List.of("aap", "noot", "mies", "vuur" );
