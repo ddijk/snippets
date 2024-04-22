@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.collections;
+package nl.dijkrosoft.snippets.collections;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.zoo;
+package nl.dijkrosoft.snippets.zoo;
 
 /**
  * Created by dickdijk on 29/04/2017.

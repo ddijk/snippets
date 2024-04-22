@@ -1,5 +1,6 @@
-package nl.dijkrosft.snippets;
+package nl.dijkrosoft.snippets;
 
+import nl.dijkrosoft.snippets.BaeldungSynchronizedMethods;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;

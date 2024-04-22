@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets;
+package nl.dijkrosoft.snippets;
 
 public class BaeldungSynchronizedMethods {
 

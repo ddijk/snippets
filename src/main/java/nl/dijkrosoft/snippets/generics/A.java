@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.generics;
+package nl.dijkrosoft.snippets.generics;
 
 /**
  * Created by dickdijk on 29/04/2017.

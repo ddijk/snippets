@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.zoo;
+package nl.dijkrosoft.snippets.zoo;
 
 import java.util.ArrayList;
 import java.util.List;

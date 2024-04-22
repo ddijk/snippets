@@ -1,4 +1,4 @@
-package nl.dijkrosft.snippets.generics;
+package nl.dijkrosoft.snippets.generics;
 
 import java.util.ArrayList;
 import java.util.Collection;
