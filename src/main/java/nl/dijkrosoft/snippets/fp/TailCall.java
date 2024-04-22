@@ -33,6 +33,10 @@ class Return<T> extends TailCall<T> {
     boolean isSuspended() {
         return false;
     }
+
+    public static <T> Return<T> ret(T t) {
+        return new Return<>(t);
+    }
 }
 
 class Suspend<T> extends TailCall<T> {
@@ -61,4 +65,9 @@ class Suspend<T> extends TailCall<T> {
     boolean isSuspended() {
         return true;
     }
+
+    public static <T> Suspend<T> sus(Supplier<TailCall<T>> supplier) {
+        return new Suspend<>(supplier);
+    }
 }
+

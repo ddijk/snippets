@@ -2,6 +2,9 @@ package nl.dijkrosoft.snippets.fp;
 
 import java.math.BigInteger;
 
+import static nl.dijkrosoft.snippets.fp.Return.ret;
+import static nl.dijkrosoft.snippets.fp.Suspend.sus;
+
 public class Fibonacci {
 
 
@@ -21,19 +24,19 @@ public class Fibonacci {
      * 1 -> 1
      * 2 -> 1
      * 3 -> 2
+     *
      * @param index
      * @return
      */
     public static TailCall<Tuple<BigInteger>> _fibo(int index, Tuple<BigInteger> state) {
 
-        if ( index  == 0 ) {
-            return new Return<>(state);
+        if (index == 0) {
+            return ret(state);
         } else {
-            return new Suspend<>(()-> _fibo(index -1 , new Tuple<>(state._2, state._1.add(state._2))));
+            return sus(() -> _fibo(index - 1, new Tuple<>(state._2, state._1.add(state._2))));
         }
 
     }
-
 
 
 }
