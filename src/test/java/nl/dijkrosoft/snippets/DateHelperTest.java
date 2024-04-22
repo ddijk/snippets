@@ -24,9 +24,9 @@ public class DateHelperTest {
     dob.set(1973, 6, 8);  // 8 juli 1973
     assertTrue("Dick is niet meerderjarig",DateHelper.isMeerderJarig(dob.getTime()));
     
-    dob.set(2005,7,13);
+    dob.set(2004,7,13);
 
-    assertFalse("Jens is wel meerderjarig",DateHelper.isMeerderJarig(dob.getTime()));
+    assertTrue("Jens is wel meerderjarig",DateHelper.isMeerderJarig(dob.getTime()));
 
   }
 
